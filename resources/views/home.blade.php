@@ -36,8 +36,8 @@
 
             <form method="POST" action="/login">
                 @csrf
-                <input class="form-input" type="login_email" placeholder="email address" name="email" required />
-                <input class="form-input" type="login_password" placeholder="password" name="password" required />
+                <input class="form-input" name="login_name" placeholder="email address" type="email" required />
+                <input class="form-input" name="login_password" placeholder="password" type="password" required />
                 <button>login</button>
             </form>
         </div>

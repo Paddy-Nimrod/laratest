@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Validation\Rule;
-use function Laravel\Prompts\password;
+
 
 class UserController extends Controller
 {
@@ -22,6 +22,19 @@ class UserController extends Controller
         $user = User::create($incomingFields);
         auth()->login($user);
         return redirect('/home');
+    }
+
+    //login function 
+    public function login(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'name' => 'required',
+            'password' => 'required'
+        ]);
+        if (auth()->attempt(['email' => $incomingFields['login_name'], 'password' => $incomingFields['login_password']])) {
+            $request->session()->regenerate();
+        }
+        return redirect("/home");
     }
 
     // logout function
